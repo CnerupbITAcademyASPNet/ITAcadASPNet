@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<PackageId>MyAwesomeLibrary3000</PackageId>
+		<Version>1.0.0</Version>
+		<Authors>Aleksandr Lysakovskiy</Authors>
+		<Company>IKIT</Company>
+		<Description>An awesome library that does amazing things</Description>
+		<PackageTags>awesome utility tools</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/yourname/MyAwesomeLibrary</RepositoryUrl>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(PackageId).xml</DocumentationFile>
+	</PropertyGroup>
+</Project>
