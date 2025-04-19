@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebApplication2.Models;
-
-public partial class Order
+namespace WebApplication2.Models
 {
-    public int Id { get; set; }
+    public class Order
+    {
+        [Key]
+        public int OrderId { get; set; }
 
-    public int UserId { get; set; }
+        [Required]
+        public int UserId { get; set; }
 
-    public DateTime CreateDate { get; set; }
+        [Required]
+        public DateTime CreateDate { get; set; }
 
-    public DateTime? ConfirmDate { get; set; }
+        public DateTime? ConfirmDate { get; set; }
 
-    public int Status { get; set; }
-
-    public virtual ICollection<OrderProduct> OrderProducts { get; set; } = new List<OrderProduct>();
-
-    public virtual User User { get; set; } = null!;
+        [Required]
+        public string Status { get; set; } = null!;
+    }
 }

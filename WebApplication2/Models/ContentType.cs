@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WebApplication2.Models;
-
-public partial class ContentType
+namespace WebApplication2.Models
 {
-    public int Id { get; set; }
+    public class ContentType
+    {
+        [Key]
+        public int ContentTypeId { get; set; }
 
-    public string TypeName { get; set; } = null!;
+        public int PermissionId { get; set; }
 
-    public int PermissionId { get; set; }
-
-    public virtual Permission IdNavigation { get; set; } = null!;
+        [Required]
+        [MaxLength(100)]
+        public string TypeName { get; set; } = null!;
+    }
 }

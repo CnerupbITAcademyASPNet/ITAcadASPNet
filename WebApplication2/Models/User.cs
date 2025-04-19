@@ -1,29 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WebApplication2.Models;
-
-public partial class User
+namespace WebApplication2.Models
 {
-    public int Id { get; set; }
+    public class User
+    {
+        [Key]
+        public int UserId { get; set; }
 
-    public string Username { get; set; } = null!;
+        [Required]
+        [StringLength(50)]
+        public string Username { get; set; } = null!;
 
-    public string Email { get; set; } = null!;
+        [Required]
+        [EmailAddress]
+        [Index(IsUnique = true)]
+        public string Email { get; set; } = null!;
 
-    public string PasswordHash { get; set; } = null!;
+        [Required]
+        [MaxLength(255)]
+        public string PasswordHash { get; set; } = null!;
 
-    public DateTime RegistrationDate { get; set; }
+        [Required]
+        public DateTime RegistrationDate { get; set; } = DateTime.Now;
 
-    public DateTime? LastLogin { get; set; }
-
-    public virtual ICollection<AdminLog> AdminLogs { get; set; } = new List<AdminLog>();
-
-    public virtual ICollection<Cart> Carts { get; set; } = new List<Cart>();
-
-    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
-
-    public virtual ICollection<Session> Sessions { get; set; } = new List<Session>();
-
-    public virtual ICollection<UserPermission> UserPermissions { get; set; } = new List<UserPermission>();
+        public DateTime? LastLogin { get; set; }
+    }
 }

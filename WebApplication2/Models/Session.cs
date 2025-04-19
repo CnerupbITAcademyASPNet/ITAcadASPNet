@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebApplication2.Models;
-
-public partial class Session
+namespace WebApplication2.Models
 {
-    public int Id { get; set; }
+    public class Session
+    {
+        [Key]
+        public int SessionId { get; set; }
 
-    public int UserId { get; set; }
+        
+        public int UserId { get; set; }
 
-    public string Token { get; set; } = null!;
+        [Required]
+        public required string Token { get; set; }
 
-    public DateTime ExpiresAt { get; set; }
-
-    public virtual User User { get; set; } = null!;
+        [Required]
+        public DateTime ExpiresAt { get; set; }
+    }
 }

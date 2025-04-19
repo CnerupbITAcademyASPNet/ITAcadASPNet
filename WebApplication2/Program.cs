@@ -1,7 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
-using WebApplication2.Data;
 
 namespace WebApplication2
 {
@@ -13,11 +12,11 @@ namespace WebApplication2
 
             // Add services to the container.
 
-            builder.Services.AddDbContext<OnlineStoreContext>(options =>
-            {
-                var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-                options.UseSqlServer(connectionString);
-            }); // DB Connection
+            //builder.Services.AddDbContext<OnlineStoreContext>(options =>
+            //{
+            //    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            //    options.UseSqlServer(connectionString);
+            //}); // DB Connection
 
             builder.Services.AddControllers()
                 .AddJsonOptions(options => // Nested JSON objects support
@@ -31,6 +30,13 @@ namespace WebApplication2
 
             var app = builder.Build();
 
+            //using (var scope = app.Services.CreateScope())
+            //{
+            //    var services = scope.ServiceProvider;
+            //    var context = services.GetRequiredService<OnlineStoreContext>();
+            //    DbInitializer.Initialize(context);
+            //}
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -40,7 +46,6 @@ namespace WebApplication2
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

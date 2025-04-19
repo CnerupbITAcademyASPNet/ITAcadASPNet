@@ -1,19 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebApplication2.Models;
-
-public partial class Permission
+namespace WebApplication2.Models
 {
-    public int Id { get; set; }
+    public class Permission
+    {
+        [Key]
+        public int PermissionId { get; set; }
 
-    public string Name { get; set; } = null!;
+        [Required]
+        [MaxLength(100)]
+        public string Name { get; set; } = null!;
 
-    public string? Description { get; set; }
+        [MaxLength(255)]
+        public string? Description { get; set; }
 
-    public virtual ContentType? ContentType { get; set; }
+        public List<User> Users { get; set; } = null!;
 
-    public virtual ICollection<GroupPermission> GroupPermissions { get; set; } = new List<GroupPermission>();
+        public List<ContentType> ContentTypes { get; set; } = null!;
 
-    public virtual ICollection<UserPermission> UserPermissions { get; set; } = new List<UserPermission>();
+        public Group? Group { get; set; }
+    }
 }

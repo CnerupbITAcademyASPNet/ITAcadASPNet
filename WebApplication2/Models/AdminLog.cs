@@ -1,19 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WebApplication2.Models;
-
-public partial class AdminLog
+namespace WebApplication2.Models
 {
-    public int Id { get; set; }
+    public class AdminLog
+    {
+        [Key]
+        public int AdminLogId { get; set; }
 
-    public int UserId { get; set; }
+        [Required]
+        public int UserId { get; set; }
 
-    public string Action { get; set; } = null!;
+        [Required]
+        [MaxLength(100)]
+        public string Action { get; set; } = null!;
 
-    public DateTime Timestamp { get; set; }
+        public DateTime Timestamp { get; set; } = DateTime.Now;
 
-    public string? Details { get; set; }
-
-    public virtual User User { get; set; } = null!;
+        [MaxLength(255)]
+        public string? Details { get; set; }
+    }
 }
